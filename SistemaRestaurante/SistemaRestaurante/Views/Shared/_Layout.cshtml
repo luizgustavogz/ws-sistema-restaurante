@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SistemaRestaurante.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/sistema-restaurante/dist/styles.css">
+    <script src="~/sistema-restaurante/dist/runtime.js" defer></script>
+    <script src="~/sistema-restaurante/dist/polyfills.js" defer></script>
+    <script src="~/sistema-restaurante/dist/main.js" defer></script>
 </head>
 <body>
     <header>
@@ -32,6 +37,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="ItemPedido" asp-action="Index">Itens</a>
                         </li>
                     </ul>
+                    <app-root></app-root>
                 </div>
             </div>
         </nav>
