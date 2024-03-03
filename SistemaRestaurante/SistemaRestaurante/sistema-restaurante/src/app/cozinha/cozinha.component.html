@@ -1,0 +1,23 @@
+<div *ngIf="itemPedido">
+  <h2>Itens de Pedido na Cozinha</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Prato</th>
+        <th>Bebida</th>
+        <th>Quantidade</th>
+        <th>Mesa</th>
+        <th>Nome Solicitante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of itemPedido">
+        <td>{{ item.prato }}</td>
+        <td>{{ item.bebida }}</td>
+        <td>{{ item.quantidade }}</td>
+        <td>{{ item.mesa }}</td>
+        <td>{{ item.nomeSolicitante }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
