@@ -1,23 +1,20 @@
 ﻿@model IEnumerable<SistemaRestaurante.Models.ItemPedido>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cozinha";
 }
 
-<h1>Index</h1>
+<h1>Detalhes pedido</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Prato)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Bebida)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Quantidade)
             </th>
@@ -33,9 +30,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Prato)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Bebida)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Quantidade)
             </td>

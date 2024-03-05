@@ -1,12 +1,12 @@
 ﻿@model SistemaRestaurante.Models.Pedido
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Pedido";
 }
 
-<h1>Create</h1>
+<h1>Realizar Pedido</h1>
 
-<h4>Pedido</h4>
+<h4>Informe seu nome e mesa para prosseguir:</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,14 +23,10 @@
                 <span asp-validation-for="Mesa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <a href="@Url.Action("Create", "ItemPedido")" class="btn btn-primary">Create</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
