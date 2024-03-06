@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SistemaRestaurante.Models.ItemPedido>
 
 @{
-    ViewData["Title"] = "Cozinha";
+    ViewData["Title"] = "Copa";
 }
 
 <h1>Detalhes pedido</h1>
@@ -10,11 +10,8 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Prato)
-            </th>
-            @*<th>
                 @Html.DisplayNameFor(model => model.Bebida)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quantidade)
             </th>
@@ -25,26 +22,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prato)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Bebida)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pedido.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bebida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pedido.Id)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalhar</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
+                </td>
+            </tr>
+        }
+
     </tbody>
 </table>
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">Voltar</a>

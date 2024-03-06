@@ -22,27 +22,27 @@ namespace SistemaRestaurante.Controllers
         // GET: Pedido
         public async Task<IActionResult> Index()
         {
-              return _context.Pedidos != null ? 
-                          View(await _context.Pedidos.ToListAsync()) :
-                          Problem("Entity set 'RestauranteContext.Pedidos'  is null.");
+            var restauranteContext = _context.ItensPedido.Include(i => i.Pedido);
+            return View(await restauranteContext.ToListAsync());
         }
 
         // GET: Pedido/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Pedidos == null)
+            if (id == null || _context.ItensPedido == null)
             {
                 return NotFound();
             }
 
-            var pedido = await _context.Pedidos
+            var itemPedido = await _context.ItensPedido
+                .Include(i => i.Pedido)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (pedido == null)
+            if (itemPedido == null)
             {
                 return NotFound();
             }
 
-            return View(pedido);
+            return View(itemPedido);
         }
 
         // GET: Pedido/Create
@@ -62,7 +62,7 @@ namespace SistemaRestaurante.Controllers
             {
                 _context.Add(pedido);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "ItemPedido");
             }
             return View(pedido);
         }
@@ -70,17 +70,18 @@ namespace SistemaRestaurante.Controllers
         // GET: Pedido/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Pedidos == null)
+            if (id == null || _context.ItensPedido == null)
             {
                 return NotFound();
             }
 
-            var pedido = await _context.Pedidos.FindAsync(id);
-            if (pedido == null)
+            var itemPedido = await _context.ItensPedido.FindAsync(id);
+            if (itemPedido == null)
             {
                 return NotFound();
             }
-            return View(pedido);
+            ViewData["PedidoId"] = new SelectList(_context.Pedidos, "Id", "Id", itemPedido.PedidoId);
+            return View(itemPedido);
         }
 
         // POST: Pedido/Edit/5
@@ -88,9 +89,9 @@ namespace SistemaRestaurante.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeSolicitante,Mesa")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Prato,Bebida,Quantidade,PedidoId")] ItemPedido itemPedido)
         {
-            if (id != pedido.Id)
+            if (id != itemPedido.Id)
             {
                 return NotFound();
             }
@@ -99,12 +100,12 @@ namespace SistemaRestaurante.Controllers
             {
                 try
                 {
-                    _context.Update(pedido);
+                    _context.Update(itemPedido);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PedidoExists(pedido.Id))
+                    if (!ItemPedidoExists(itemPedido.Id))
                     {
                         return NotFound();
                     }
@@ -115,25 +116,27 @@ namespace SistemaRestaurante.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(pedido);
+            ViewData["PedidoId"] = new SelectList(_context.Pedidos, "Id", "Id", itemPedido.PedidoId);
+            return View(itemPedido);
         }
 
         // GET: Pedido/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Pedidos == null)
+            if (id == null || _context.ItensPedido == null)
             {
                 return NotFound();
             }
 
-            var pedido = await _context.Pedidos
+            var itemPedido = await _context.ItensPedido
+                .Include(i => i.Pedido)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (pedido == null)
+            if (itemPedido == null)
             {
                 return NotFound();
             }
 
-            return View(pedido);
+            return View(itemPedido);
         }
 
         // POST: Pedido/Delete/5
@@ -141,16 +144,16 @@ namespace SistemaRestaurante.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Pedidos == null)
+            if (_context.ItensPedido == null)
             {
-                return Problem("Entity set 'RestauranteContext.Pedidos'  is null.");
+                return Problem("Entity set 'RestauranteContext.ItensPedido'  is null.");
             }
-            var pedido = await _context.Pedidos.FindAsync(id);
-            if (pedido != null)
+            var itemPedido = await _context.ItensPedido.FindAsync(id);
+            if (itemPedido != null)
             {
-                _context.Pedidos.Remove(pedido);
+                _context.ItensPedido.Remove(itemPedido);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -158,6 +161,10 @@ namespace SistemaRestaurante.Controllers
         private bool PedidoExists(int id)
         {
           return (_context.Pedidos?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+        private bool ItemPedidoExists(int id)
+        {
+            return (_context.ItensPedido?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

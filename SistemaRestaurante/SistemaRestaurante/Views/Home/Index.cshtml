@@ -4,8 +4,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Sistema Restaurante</h1>
-    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
-    <button onclick="location.href='@Url.Action("Create", "Pedido")'">Realizar pedido</button>
-    <button onclick="location.href='@Url.Action("Index", "ItemPedido")'">Cozinha</button>
-    <button onclick="location.href='@Url.Action("Index", "ItemPedido")'">Copa</button>
+    <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("Create", "Pedido")'">Realizar pedido</button>
+    <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("Index", "Pedido")'">Cozinha</button>
+    <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("Index", "ItemPedido")'">Copa</button>
 </div>

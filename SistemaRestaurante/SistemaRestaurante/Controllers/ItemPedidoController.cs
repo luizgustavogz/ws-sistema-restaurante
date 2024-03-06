@@ -63,7 +63,7 @@ namespace SistemaRestaurante.Controllers
             {
                 _context.Add(itemPedido);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             ViewData["PedidoId"] = new SelectList(_context.Pedidos, "Id", "Id", itemPedido.PedidoId);
             return View(itemPedido);

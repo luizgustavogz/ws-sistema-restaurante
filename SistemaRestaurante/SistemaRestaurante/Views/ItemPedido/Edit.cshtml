@@ -4,9 +4,7 @@
     ViewData["Title"] = "Editar";
 }
 
-<h1>Editar</h1>
-
-<h4>Pedido</h4>
+<h4>Editar Pedido</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -34,14 +32,11 @@
                 <span asp-validation-for="PedidoId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary mt-3" />
+                <a href="@Url.Action("Index", "ItemPedido")" class="btn btn-danger mt-3">Cancelar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {

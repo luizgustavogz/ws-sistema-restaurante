@@ -23,7 +23,8 @@
                 <span asp-validation-for="Mesa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a href="@Url.Action("Create", "ItemPedido")" class="btn btn-primary">Create</a>
+                <input type="submit" value="Criar" class="btn btn-primary mt-3" />
+                <a href="@Url.Action("Index", "Home")" class="btn btn-danger mt-3">Cancelar</a>
             </div>
         </form>
     </div>

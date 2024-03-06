@@ -6,7 +6,7 @@ namespace SistemaRestaurante.Models
     [Table("ItensPedido")]
     public class ItemPedido
     {
-        [Column("Id")]
+        [Column("ItemId")]
         public int Id { get; set; }
 
         [Column("Prato")]
